@@ -34,3 +34,13 @@ Route::post('community', [App\Http\Controllers\CommunityLinkController::class, '
 
 
 require __DIR__ . '/auth.php';
+
+//Crea una ruta que tenga un parámetro que sea opcional y comprueba que funciona.
+Route::get('/wellcome/{nombre?}', function ($nombre = null) {
+    return 'wellcome '.$nombre;
+});
+
+//Crea una ruta que tenga un parámetro que sea opcional y tenga un valor por defecto en caso de que no se especifique.
+Route::get('/goodbye/{nombre?}', function ($nombre = 'Pascal') {
+    return 'goodbye '.$nombre;
+});
