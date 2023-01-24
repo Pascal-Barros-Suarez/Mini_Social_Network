@@ -44,3 +44,8 @@ Route::get('/wellcome/{nombre?}', function ($nombre = null) {
 Route::get('/goodbye/{nombre?}', function ($nombre = 'Pascal') {
     return 'goodbye '.$nombre;
 });
+
+
+Route::post('/wellcome/{nombre?}', function ($nombre = 'Pascal') {
+    return 'hi '.$nombre;
+});
