@@ -45,7 +45,22 @@ Route::get('/goodbye/{nombre?}', function ($nombre = 'Pascal') {
     return 'goodbye '.$nombre;
 });
 
-
+// Crea una ruta que atienda por POST y compruébala con Postman.
 Route::post('/wellcome/{nombre?}', function ($nombre = 'Pascal') {
     return 'hi '.$nombre;
+});
+
+// Crea una ruta que atienda por GET y por POST (en un único método) y compruébalas. Vuelve a habilitar el filtro VerifyCsrfToken en el fichero kernel.php (carpeta Http).
+Route::match(['get', 'post'], '/getpost', function () {
+    return 'esta ruta atiende tanto por get como por post';
+});
+
+//Crea una ruta que compruebe que un parámetro está formado sólo por números.
+Route::get('/num/{num}', function ($num) {
+    return 'tu numero: '.$num;
+});
+
+//Crea una ruta con dos parámetros que compruebe que el primero está formado sólo por letras y el segundo sólo por números.
+Route::get('/numlet/{num}/{leter}', function ($num, $leter) {
+    return 'tu numero: '.$num. ' y tu frase: '.$leter;
 });

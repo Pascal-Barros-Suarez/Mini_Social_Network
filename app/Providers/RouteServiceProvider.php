@@ -36,6 +36,9 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
         });
+
+        Route::pattern('num', '[0-9]+');
+        Route::pattern('leter', '[a-zA-Z]+');
     }
 
     /**
