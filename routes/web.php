@@ -68,3 +68,33 @@ Route::get('/numlet/{num}/{leter}', function ($num, $leter) {
 Route::get('/host', function () {
     return 'tu ip: ' . env('DB_HOST');
 });
+
+//Utiliza el helper config para que cuando se acceda a la ruta /timezone se muestre la zona horaria.
+Route::get('/timezone', function () {
+    return 'tu zona horaria: ' . config('app.timezone');
+});
+
+//Define una vista llamada home.blade.php que muestre "Esta es mi primera vista en Laravel" al acceder a la ruta /inicio de tu proyecto. Utiliza Route::view.
+Route::get('/inicio_de_tu_proyecto', function () {
+    return view('home');
+});
+
+//Crea otra vista que se llame fecha.blade.php y crea una ruta en /fecha. La ruta le pasará a la vista un array asociativo para que se muestre la fecha sacando por pantalla las variables de dicho array. El día estará en una variable, el mes en otra y el año en otra (puedes usar la función date() de PHP). Utiliza el helper view.
+Route::get('/fecha', function () {
+    return view('fecha', ['dia' => date('d'), 'mes' => date('m'), 'ano' => date('Y')]);
+});
+
+//Haz lo mismo pero con la función PHP compact.
+Route::get('/fechaCompact', function () {
+    $dia = date('d');
+    $mes = date('m');
+    $ano = date('Y');
+
+    return view('fechaCompact', compact('dia','mes','ano'));
+});
+
+
+
+
+
+
