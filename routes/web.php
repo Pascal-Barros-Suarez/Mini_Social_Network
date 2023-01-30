@@ -34,3 +34,8 @@ Route::post('community', [App\Http\Controllers\CommunityLinkController::class, '
 
 
 require __DIR__ . '/auth.php';
+
+
+Route::get('/404', function () {
+    return view('404');
+});
