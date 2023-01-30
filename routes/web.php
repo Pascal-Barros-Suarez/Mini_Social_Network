@@ -90,11 +90,19 @@ Route::get('/fechaCompact', function () {
     $mes = date('m');
     $ano = date('Y');
 
-    return view('fechaCompact', compact('dia','mes','ano'));
+    return view('fechaCompact', compact('dia', 'mes', 'ano'));
 });
 
+//Haz lo mismo pero con el helper with.
+Route::get('/fechaWith', function () {
+    $dia = date('d');
+    $mes = date('m');
+    $ano = date('Y');
 
+    return view('fechaWith', with(compact('dia', 'mes', 'ano')));
+});
 
-
-
-
+//Cargar imágenes desde blade. Crea una carpeta images en el directorio public y dentro sube una imagen 404.jpg personalizada. Crea una vista de prueba que acceda a la imagen utilizando el helper asset(images/404.jpg) y comprueba que funciona (<img src="{{asset('images/404.jpg')}}" alt="Error 404">).
+Route::get('/404', function () {
+    return view('img404');
+});
