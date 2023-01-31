@@ -16,12 +16,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
 
+Route::get('/404', function () {
+    Route::view('404');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');//loged verified
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,13 +32,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('community', [App\Http\Controllers\CommunityLinkController::class, 'index']);
-Route::post('community', [App\Http\Controllers\CommunityLinkController::class, 'store']);
+Route::get('community', [App\Http\Controllers\CommunityLinkController::class, 'index'])->middleware(['auth'])->name('community');
+
+Route::post('community', [App\Http\Controllers\CommunityLinkController::class, 'store'])->middleware(['auth'])->name('community');
 
 
 require __DIR__ . '/auth.php';
-
-
-Route::get('/404', function () {
-    return view('404');
-});
