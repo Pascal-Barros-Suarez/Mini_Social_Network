@@ -33,10 +33,16 @@ class CommunityLinkController extends Controller{
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        //return response('Respuesta', 200);
+        $this->validate($request, [
+            'title' => 'required',
+            'link' => 'required|active_url'
+          ]);
+          
         request()->merge(['user_id' => Auth::id(), 'channel_id' => 1 ]);
         CommunityLink::create($request->all());
         return back();
