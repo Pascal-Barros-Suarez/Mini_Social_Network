@@ -20,7 +20,7 @@ class CommunityLinkController extends Controller
     {
         $channels = Channel::orderBy('title','asc')->get();
         $links = CommunityLink::paginate(25);
-        return view('community/index', compact('links'));
+        return view('community/index', compact('links', 'channels'));
     }
 
     /**

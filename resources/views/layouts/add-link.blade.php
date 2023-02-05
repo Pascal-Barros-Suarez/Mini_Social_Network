@@ -18,6 +18,21 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="Channel">Channel:</label>
+                    <select class="form-control @error('channel_id') is-invalid @enderror" name="channel_id">
+                    <option selected disabled>Pick a Channel...</option>
+                    @foreach ($channels as $channel)
+                    <option value="{{ $channel->id }}">
+                    {{ $channel->title }}
+                    </option>
+                    @endforeach
+                    </select>
+                    @error('channel_id')
+                    <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                    </div>
+
+                <div class="form-group">
                     <label for="link">Link:</label>
                     <input type="text" class="form-control @error('link') is-invalid @enderror"
                         id="link" name="link" placeholder="What is the URL?">
