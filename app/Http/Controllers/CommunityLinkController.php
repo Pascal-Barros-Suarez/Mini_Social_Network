@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 // request siempre al princio
 use Illuminate\Http\Request;
 use App\Models\CommunityLink;
+use App\Models\Channel;
 use Illuminate\Support\Facades\Auth;
 
-class CommunityLinkController extends Controller{
+
+class CommunityLinkController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +18,9 @@ class CommunityLinkController extends Controller{
      */
     public function index()
     {
+        $channels = Channel::orderBy('title','asc')->get();
         $links = CommunityLink::paginate(25);
         return view('community/index', compact('links'));
-      
     }
 
     /**
@@ -36,18 +39,20 @@ class CommunityLinkController extends Controller{
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //return response('Respuesta', 200);
         $this->validate($request, [
             'title' => 'required',
-            'link' => 'required|active_url'
-          ]);
-          
-        request()->merge(['user_id' => Auth::id(), 'channel_id' => 1 ]);
+            'link' => 'required|active_url', 
+            'channel_id' => 'required|exists:channels,id'
+        ]);
+
+        request()->merge(['user_id' => Auth::id(), 'channel_id' => 1]);
         CommunityLink::create($request->all());
         return back();
-      }
-      
+    }
+
 
     /**
      * Display the specified resource.
