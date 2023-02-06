@@ -22,7 +22,6 @@ class CommunityLinkController extends Controller
         $links = CommunityLink::where('approved', 1)->paginate(25);
         return view('community/index', compact('links', 'channels'));
     }
-    //empezando practica 36
 
     /**
      * Show the form for creating a new resource.

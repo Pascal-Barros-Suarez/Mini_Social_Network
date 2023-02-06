@@ -1,4 +1,4 @@
-<div class="col-md-4">
+<div class="col-md-4 mt-2">
     <div class="card">
         <div class="card-header">
             <h3>Contribute a link</h3>
