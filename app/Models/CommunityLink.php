@@ -14,11 +14,17 @@ class CommunityLink extends Model
       ];
 
 
-    public function creator()
+    public function creator() // unit tablas usuarios y community link 1-N
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    public function definition()
+
+    public function channel() // unit tablas usuarios y community link 1-N
+    {
+        return $this->belongsTo(Channel::class, 'channel_id');
+    }
+
+    /* public function definition()
     {
         return [
             'user_id' => \App\Models\User::all()->random()->id,
@@ -27,5 +33,5 @@ class CommunityLink extends Model
             'link' => $this->faker->url,
             'approved' => 0
            ];
-    }
+    } */
 }

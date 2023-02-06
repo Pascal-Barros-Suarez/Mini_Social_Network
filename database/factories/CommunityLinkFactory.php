@@ -21,7 +21,7 @@ class CommunityLinkFactory extends Factory
     {
         return [
             'user_id' => \App\Models\User::all()->random()->id,
-            'channel_id' => 1,
+            'channel_id' => \App\Models\Channel::all()->random()->id,
             'title' => $this->faker->sentence,
             'link' => $this->faker->url,
             'approved' => 0
