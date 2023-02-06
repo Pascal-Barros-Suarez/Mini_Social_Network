@@ -44,7 +44,7 @@ class CommunityLinkController extends Controller
         //return response('Respuesta', 200);
         $this->validate($request, [
             'title' => 'required',
-            'link' => 'required|active_url', 
+            'link' => 'required|active_url|unique:community_links',
             'channel_id' => 'required|exists:channels,id'
         ]);
 
