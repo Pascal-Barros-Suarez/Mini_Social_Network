@@ -47,8 +47,8 @@ class CommunityLinkController extends Controller
             'link' => 'required|active_url|unique:community_links',
             'channel_id' => 'required|exists:channels,id'
         ]);
-
-        request()->merge(['user_id' => Auth::id()]);
+        $approved = Auth::user()->trusted ? true : false;
+        request()->merge(['user_id' => Auth::id(), 'approved'=>$approved]);
         CommunityLink::create($request->all());
         return back();
     }
