@@ -19,9 +19,10 @@ class CommunityLinkController extends Controller
     public function index()
     {
         $channels = Channel::orderBy('title', 'asc')->get();
-        $links = CommunityLink::paginate(25);
+        $links = CommunityLink::where('approved', 1)->paginate(25);
         return view('community/index', compact('links', 'channels'));
     }
+    //empezando practica 36
 
     /**
      * Show the form for creating a new resource.
