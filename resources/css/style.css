@@ -1,0 +1,26 @@
+.text-span-in-li {
+    border: 0;
+    border-radius: 15px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-right: 5px;
+}
+
+li {
+    list-style: none;
+    border: 1px solid rgb(196, 196, 196);
+}
+
+.spaceInLi {
+    padding: 5px;
+}
+
+option {
+    color: white;
+    background-color: rgb(44, 42, 42);
+}
+
+a {
+    text-decoration-line: underline;
+    color: rgb(0, 76, 255);
+}
