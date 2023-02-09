@@ -44,18 +44,23 @@ class CommunityLinkController extends Controller
         //return response('Respuesta', 200);
         $this->validate($request, [
             'title' => 'required',
-            'link' => 'required|active_url|unique:community_links',
+            'link' => 'required|active_url',
             'channel_id' => 'required|exists:channels,id'
         ]);
         $approved = Auth::user()->trusted ? true : false;
         request()->merge(['user_id' => Auth::id(), 'approved' => $approved]);
-        CommunityLink::create($request->all());
 
         if ($approved) {
-            return back()->with('success', 'Link created successfully!');
+            if (CommunityLink::hasAlreadyBeenSubmitted($request['link'])) {
+                CommunityLink::hasAlreadyBeenSubmitted($request['link']);
+                return back()->with('success', 'Link update successfully!');
+            } else {
+                CommunityLink::create($request->all());
+                return back()->with('success', 'Link created successfully!');
+            }
         } else {
+            CommunityLink::create($request->all());
             return back()->with('warning', 'Link created successfully but you don´t are approved!');
-
         }
     }
 

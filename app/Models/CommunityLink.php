@@ -11,7 +11,7 @@ class CommunityLink extends Model
 
     protected $fillable = [
         'user_id', 'channel_id', 'title', 'link', 'approved'
-      ];
+    ];
 
 
     public function creator() // unit tablas usuarios y community link 1-N
@@ -23,6 +23,17 @@ class CommunityLink extends Model
     {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
+
+    protected static function hasAlreadyBeenSubmitted($link)
+    {
+        if ($existing = static::where('link', $link)->first()) {
+            $existing->touch();
+            $existing->save();
+            return true;
+        }
+        return false;
+    }
+
 
     /* public function definition()
     {
