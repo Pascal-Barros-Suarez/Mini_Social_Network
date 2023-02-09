@@ -4,8 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CommynityLinkForm extends FormRequest
+class CommunityLinkForm extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +14,7 @@ class CommynityLinkForm extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,9 @@ class CommynityLinkForm extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'link' => 'required|active_url',
+            'channel_id' => 'required|exists:channels,id'
         ];
     }
 }

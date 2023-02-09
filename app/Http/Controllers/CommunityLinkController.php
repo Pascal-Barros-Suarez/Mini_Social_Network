@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Http\Controllers;
 
 // request siempre al princio
-use Illuminate\Http\Request;
-use App\Models\CommunityLink;
-use App\Models\Channel;
-use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\CommunityLinkForm;
+use App\Models\Channel;
+use App\Models\CommunityLink;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityLinkController extends Controller
 {
@@ -39,16 +39,11 @@ class CommunityLinkController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function store(CommunityLinkForm $request)
     {
-        //return response('Respuesta', 200);
-        $this->validate($request, [
-            'title' => 'required',
-            'link' => 'required|active_url',
-            'channel_id' => 'required|exists:channels,id'
-        ]);
         $approved = Auth::user()->trusted ? true : false;
-        request()->merge(['user_id' => Auth::id(), 'approved' => $approved]);
+        $request->merge(['user_id' => Auth::id(), 'approved' => $approved]);
 
         if ($approved) {
             if (CommunityLink::hasAlreadyBeenSubmitted($request['link'])) {
