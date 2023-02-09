@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h1>Community</h1>
+                <h1 class="mt-2">Community</h1>
                 @if (count($links) == 0)
                     <h3>No contributions yet</h3>
                 @else
