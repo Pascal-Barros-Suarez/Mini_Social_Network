@@ -3,9 +3,11 @@
         <li>
             <div class="spaceInLi">
                 <span class="text-span-in-li label label-default" style="background: {{ $link->channel->color }}">
-                    {{ $link->channel->title }}
+                    <a href="/community/{{ $link->channel->slug }}" target="_blank">
+                        {{ $link->channel->title }}
+                    </a>
                 </span>
-                <a href="{{ $link->link }}" target="_blank">
+                <a class="enlace" href="{{ $link->link }}" target="_blank">
                     {{ $link->title }}
                 </a>
                 <small>Contributed by: {{ $link->creator->name }}
