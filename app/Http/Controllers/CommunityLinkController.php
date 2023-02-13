@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 // request siempre al princio
@@ -46,8 +47,10 @@ class CommunityLinkController extends Controller
         $request->merge(['user_id' => Auth::id(), 'approved' => $approved]);
 
         if ($approved) {
-            if (CommunityLink::hasAlreadyBeenSubmitted($request['link'])) {
-                CommunityLink::hasAlreadyBeenSubmitted($request['link']);
+            $link = new CommunityLink();
+            $link->user_id = Auth::id();
+            $linkSent = $link->hasAlreadyBeenSubmitted($request->link);
+            if ($linkSent) {
                 return back()->with('success', 'Link update successfully!');
             } else {
                 CommunityLink::create($request->all());
