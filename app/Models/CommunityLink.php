@@ -19,12 +19,7 @@ class CommunityLink extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function channel() // unit tablas usuarios y community link 1-N
-    {
-        return $this->belongsTo(Channel::class, 'channel_id');
-    }
-
-    protected static function hasAlreadyBeenSubmitted($link)
+    public function hasAlreadyBeenSubmitted($link)
     {
         if ($existing = static::where('link', $link)->first()) {
             $existing->touch();
@@ -32,6 +27,11 @@ class CommunityLink extends Model
             return true;
         }
         return false;
+    }
+
+    public function channel() // unit tablas usuarios y community link 1-N
+    {
+        return $this->belongsTo(Channel::class, 'channel_id');
     }
 
 
