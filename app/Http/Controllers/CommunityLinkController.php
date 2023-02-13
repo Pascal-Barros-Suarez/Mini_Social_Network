@@ -62,8 +62,6 @@ class CommunityLinkController extends Controller
             $link = new CommunityLink();
             $link->user_id = Auth::id();
 
-
-            //dd($link);
             if ($link->hasAlreadyBeenSubmitted($request->link)) {
                 $link->hasAlreadyBeenSubmitted($request->link);
                 return back()->with('success', 'Link update successfully!');
