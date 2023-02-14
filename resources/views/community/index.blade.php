@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                
+
                 @if ($links[0]->title == 'PHP' || $links[0]->title == 'Laravel' || $links[0]->title == 'React')
-                <h1 class="mt-2">Community - {{ $links[0]->title }}</h1>
+                    <h1 class="mt-2">Community - {{ $links[0]->title }}</h1>
                 @else
-                <h1 class="mt-2">Community</h1>
+                    <h1 class="mt-2">Community</h1>
                 @endif
-                
+
 
                 @if (count($links) == 0)
                     <h3>No contributions yet</h3>
