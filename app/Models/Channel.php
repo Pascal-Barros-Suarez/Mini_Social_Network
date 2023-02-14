@@ -13,4 +13,12 @@ class Channel extends Model
     {
         return 'slug';
     }
+
+    public function links() // unit tablas usuarios y community link 1-N
+    {
+        return $this->hasMany(CommunityLink::class, 'channel_id');
+    }
+
+
+
 }
