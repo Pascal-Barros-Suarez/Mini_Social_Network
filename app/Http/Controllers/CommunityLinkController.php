@@ -25,7 +25,7 @@ class CommunityLinkController extends Controller
         if ($channel === null) {
             $links = CommunityLink::where('approved', true)->latest('updated_at')->paginate(25);
         } else {
-            $links = $channel->links()->where('approved', true)->latest('updated_at')->paginate(25);
+            $links = $channel->communitylinks()->where('approved', true)->latest('updated_at')->paginate(25);
         }
 
         return view('community/index', compact('links', 'channels', 'channel'));
