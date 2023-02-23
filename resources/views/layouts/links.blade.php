@@ -15,13 +15,15 @@
                 <br>
 
                 <div>
-                    <form method="POST" action="/votes/{{ $link->id }}">
+                    <form method="POST" action="community/votes/{{ $link->id }}">
                         {{ csrf_field() }}
-                        <button type="button"
+                        <button
                             class="ms-4 me-2 m-1 btn btn-sm {{ Auth::check() && Auth::user()->votedFor($link) ? 'btn-success' : 'btn-primary' }}"
-                            {{-- {{ Auth::guest() ? 'disabled' : '' }}> --}} {{ Auth::user()->trusted ? '' : 'disabled' }}>
+                            {{ Auth::user()->trusted ? '' : 'disabled' }}>
+                            {{-- {{ Auth::guest() ? 'disabled' : '' }}> --}}
                             👍
                         </button>
+
                         <small>🎇votos: {{ $link->users()->count() }}</small>
                     </form>
                 </div>

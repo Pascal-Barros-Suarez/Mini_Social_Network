@@ -39,4 +39,3 @@ class CommunityLink extends Model
         return $this->belongsToMany(User::class, 'community_link_users');
     }
 }
-
