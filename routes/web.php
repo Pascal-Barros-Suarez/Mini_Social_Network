@@ -38,7 +38,7 @@ Route::post('community', [App\Http\Controllers\CommunityLinkController::class, '
 
 Route::get('community/{channel}', [App\Http\Controllers\CommunityLinkController::class, 'index']);
 ///votes/
-Route::post('community/votes/{link}', [App\Http\Controllers\CommunityLinkUserController ::class, 'store']);
+Route::post('community/votes/{link}', [App\Http\Controllers\CommunityLinkUserController::class, 'store']);
 
 
 

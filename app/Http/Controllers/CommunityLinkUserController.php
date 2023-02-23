@@ -9,18 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class CommunityLinkUserController extends Controller
 {
-    public function store(CommunityLink $link)
+    public function store(CommunityLink $link, CommunityLinkUser $communityLinkUser)
     {
-        //dd($link);
-        //Recupera el voto del usuario, o crea uno nuevo si no existe.
-        $vote = CommunityLinkUser::firstOrNew(['user_id' => Auth::id(), 'community_link_id' => $link->id]);
-
-        if ($vote->id) { // si el voto existe lo elimina
-            $vote->delete();
-        } else { // guarda el nuevo voto
-            $vote->save();
-        }
-        // devuelve al usuario a la pagina anterior
+        $communityLinkUser->toggleVote($link);
         return back();
     }
 }
