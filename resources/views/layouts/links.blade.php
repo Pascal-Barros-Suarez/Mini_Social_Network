@@ -18,7 +18,7 @@
                     <form method="POST" action="/votes/{{ $link->id }}">
                         {{ csrf_field() }}
                         <button type="button"
-                            class="ms-4 m-1 btn btn-sm {{ Auth::check() && Auth::user()->votedFor($link) ? 'btn-success' : 'btn-primary' }}"
+                            class="ms-4 me-2 m-1 btn btn-sm {{ Auth::check() && Auth::user()->votedFor($link) ? 'btn-success' : 'btn-primary' }}"
                             {{-- {{ Auth::guest() ? 'disabled' : '' }}> --}} {{ Auth::user()->trusted ? '' : 'disabled' }}>
                             👍
                         </button>
