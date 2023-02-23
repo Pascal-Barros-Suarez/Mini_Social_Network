@@ -16,8 +16,8 @@ class Channel extends Model
 
     public function communitylinks() // unit tablas usuarios y community link 1-N
     {
-        return $this->hasMany(CommunityLink::class, 'channel_id');
-        //return $this->hasMany(CommunityLink::class);
+        //return $this->hasMany(CommunityLink::class, 'channel_id');
+        return $this->hasMany(CommunityLink::class);
 
     }
 

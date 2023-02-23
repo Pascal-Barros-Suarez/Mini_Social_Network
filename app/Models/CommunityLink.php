@@ -14,7 +14,7 @@ class CommunityLink extends Model
     ];
 
 
-    public function creator() // unit tablas usuarios y community link 1-N
+    public function creator() // unir tablas usuarios y community link 1-N
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -29,20 +29,13 @@ class CommunityLink extends Model
         return false;
     }
 
-    public function channel() // unit tablas usuarios y community link 1-N
+    public function channel() // unir tablas usuarios y community link 1-N
     {
         return $this->belongsTo(Channel::class, 'channel_id');
     }
 
-
-    /* public function definition()
+    public function users()
     {
-        return [
-            'user_id' => \App\Models\User::all()->random()->id,
-            'channel_id' => 1,
-            'title' => $this->faker->sentence,
-            'link' => $this->faker->url,
-            'approved' => 0
-           ];
-    } */
+        return $this->belongsToMany(User::class, 'community_link_users');
+    }
 }
