@@ -12,8 +12,18 @@
                 </a>
                 <small>Contributed by: {{ $link->creator->name }}
                     {{ $link->updated_at->diffForHumans() }}</small>
-<br>
-                <small>🎇votos: {{$link->users()->count()}}</small>
+                <br>
+
+                <div>
+                    <form method="POST" action="/votes/{{ $link->id }}">
+                        {{ csrf_field() }}
+                        <button type="button" class="ms-4 m-1 btn btn-success btn-sm"
+                            {{ Auth::guest() ? 'disabled' : '' }}>
+                            👍
+                        </button>
+                        <small>🎇votos: {{ $link->users()->count() }}</small>
+                    </form>
+                </div>
             </div>
         </li>
     @endforeach

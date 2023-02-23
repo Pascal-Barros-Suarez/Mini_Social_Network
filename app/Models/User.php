@@ -42,10 +42,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    function isTrusted(){
-        $this -> trusted ? true : false;
-        return $this -> trusted;
+    function isTrusted()
+    {
+        $this->trusted ? true : false;
+        return $this->trusted;
     }
 
-
+    function votes()
+    { //relación entre user y links, con el tiempo de creación y/o actualización de un registro
+        return $this->belongsToMany(CommunityLink::class)->withTimestamps();
+    }
 }
