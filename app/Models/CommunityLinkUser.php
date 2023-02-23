@@ -8,6 +8,7 @@ class CommunityLinkUser extends Model
 {
     use HasFactory;
 
+    protected $table = 'community_link_users';
 
     protected $fillable = [
         'user_id',

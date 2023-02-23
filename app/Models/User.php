@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     { //relación entre user y links, con el tiempo de creación y/o actualización de un registro
         return $this->belongsToMany(CommunityLink::class)->withTimestamps();
     }
+
+    public function votedFor(CommunityLink $link)
+    {//devuelve un boolean si el user ha votado por el link
+        return $this->votes->contains($link);
+    }
 }
