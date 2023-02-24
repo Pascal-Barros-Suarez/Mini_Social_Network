@@ -21,15 +21,18 @@
                             class="ms-4 me-2 m-1 btn btn-sm {{ Auth::check() && Auth::user()->votedFor($link) ? 'btn-success' : 'btn-primary' }}"
                             {{ Auth::user()->trusted ? '' : 'disabled' }}>
                             {{-- {{ Auth::guest() ? 'disabled' : '' }}> --}}
-                            👍
+                            {{-- <i class="bi bi-heart-fill"></i> corazon --}}
+                            <i class="bi bi-hand-thumbs-up"></i>
                         </button>
 
-                        <small>🎇votos: {{ $link->users()->count() }}</small>
+                        <small>
+                            <i class="bi bi-hearts">votos: {{ $link->users()->count() }}</i></small>
+                        {{-- <i class="bi bi-stars"></i> estrellitas --}}
                     </form>
                 </div>
             </div>
         </li>
     @endforeach
 </ul>
-{{ $links->appends($_GET)->links() }}
 {{-- La función appends se encarga de mantener los filtros seleccionados al navegar por las diferentes páginas del sistema de paginación de Laravel. --}}
+{{ $links->appends($_GET)->links() }}

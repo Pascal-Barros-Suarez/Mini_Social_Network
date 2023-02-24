@@ -22,22 +22,37 @@ class CommunityLinkController extends Controller
     {
         $linksQuery = new CommunityLinksQuery();
         $channels = Channel::orderBy('title', 'asc')->get();
+        $search = '';
 
-        if ($channel === null) {
+        if (request()->exists('search')) {
+            $search = htmlspecialchars(trim($_GET['search']));
+            $consult = explode(" ", $search);
+
             if (request()->exists('popular')) {
-                $links = $linksQuery->getMostPopular();
+                $links = $linksQuery->getSearch($consult, true);
             } else {
-                $links = $linksQuery->getAll();
+                $links = $linksQuery->getSearch($consult);
             }
         } else {
-            if (request()->exists('popular')) {
-                $links = $linksQuery->getByChannelMostPopular($channel);
+            if ($channel === null) {
+
+                if (request()->exists('popular')) {
+                    $links = $linksQuery->getMostPopular();
+                } else {
+                    $links = $linksQuery->getAll();
+                }
             } else {
-                $links = $linksQuery->getByChannel($channel);
+
+                if (request()->exists('popular')) {
+                    $links = $linksQuery->getByChannelMostPopular($channel);
+                } else {
+                    $links = $linksQuery->getByChannel($channel);
+                }
             }
         }
 
-        return view('community/index', compact('links', 'channels', 'channel'));
+
+        return view('community/index', compact('links', 'channels', 'channel', 'search'));
     }
 
     /**
