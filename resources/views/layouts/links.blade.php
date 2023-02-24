@@ -31,3 +31,5 @@
         </li>
     @endforeach
 </ul>
+{{ $links->appends($_GET)->links() }}
+{{-- La función appends se encarga de mantener los filtros seleccionados al navegar por las diferentes páginas del sistema de paginación de Laravel. --}}

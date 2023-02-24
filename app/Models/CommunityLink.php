@@ -38,4 +38,9 @@ class CommunityLink extends Model
     {
         return $this->belongsToMany(User::class, 'community_link_users');
     }
+
+    public function votes()
+    {
+        return $this->belongsToMany(User::class, 'community_link_users')->withTimestamps();
+    }
 }
